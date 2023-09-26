@@ -10,6 +10,10 @@ const handleClientConnection = (newActiveSocket) => {
         console.log(`${getSocketKey(newActiveSocket)} sent message: ${data}`);
     });
 
+    newActiveSocket.on("end", () => {
+        console.log(`${getSocketKey(newActiveSocket)} is now disconnected`)
+    })
+
 }
 
 const server = net.createServer();
