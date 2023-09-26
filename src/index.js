@@ -1,12 +1,13 @@
 const net = require("net");
 const { PORT_NUMBER, ADDRESS, BACKLOG } = require("./constants");
+const { getSocketKey } = require("./utils");
 
 const handleClientConnection = (newActiveSocket) => {
 
-    console.log(`${newActiveSocket.remoteAddress}:${newActiveSocket.remotePort} is now connected`);
+    console.log(`${getSocketKey(newActiveSocket)} is now connected`);
 
     newActiveSocket.on("data", (data) => {
-        console.log(`${newActiveSocket.remoteAddress}:${newActiveSocket.remotePort} sent message: ${data}`);
+        console.log(`${getSocketKey(newActiveSocket)} sent message: ${data}`);
     });
 
 }
