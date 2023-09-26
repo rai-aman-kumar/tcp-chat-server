@@ -4,6 +4,7 @@ const { handleClientConnection } = require("./events/passive_socket");
 
 
 const server = net.createServer();
+// add "connection" event handler on passive socket
 server.on("connection", handleClientConnection);
 
 server.listen(PORT_NUMBER, ADDRESS, BACKLOG, () => {
