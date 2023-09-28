@@ -1,10 +1,14 @@
 const { getSocketKey } = require("../../utils");
 const { removeClient } = require("../../clients");
+const { message } = require("../../message");
 
 // returns active socket specific handler for "data" event
 const getHandleClientData = (socket) => {
     const handleClientData = (data) => {
         console.log(`${getSocketKey(socket)} sent message: ${data}`);
+
+        // echo back to client
+        message(socket, data.toString());
     };
     return handleClientData;
 }
