@@ -1,4 +1,5 @@
 const { getSocketKey } = require("../../utils");
+const { removeClient } = require("../../clients");
 
 // returns active socket specific handler for "data" event
 const getHandleClientData = (socket) => {
@@ -12,6 +13,9 @@ const getHandleClientData = (socket) => {
 const getHandleClientDisconnect = (socket) => {
     const handleClientDisconnect = () => {
         console.log(`${getSocketKey(socket)} is now disconnected`);
+
+        // removing client info from connectedClients
+        removeClient(socket);
     }
     return handleClientDisconnect;
 }
